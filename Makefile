@@ -6,14 +6,14 @@ SRC_DIR     = src
 OBJ_DIR     = obj
 LIBFT_DIR   = libft
 
-SRC         = main.c validation.c
+SRC         = main.c validation.c utils.c instructions.c
 OBJ         = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 LIBFT       = $(LIBFT_DIR)/libft.a
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -I$(INC_DIR) -I$(LIBFT_DIR) -c $< -o $@
@@ -34,4 +34,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

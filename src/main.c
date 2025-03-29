@@ -1,70 +1,57 @@
 #include "push_swap.h"
 
-void	free_list(t_lst *head)
-{
-	t_lst	*tmp;
-
-	while (head)
-	{
-		tmp = head;
-		head = head->next;
-		free(tmp);
-	}
-}
-
-t_lst	*allocate_node(int value)
-{
-	t_lst	*new;
-
-	new = (t_lst *)malloc(sizeof(t_lst));
-	if (!new)
-	{
-		ft_putstr_fd("Memory allocation failed!\n", 2);
-		exit(EXIT_FAILURE);
-	}
-	new->data = value;
-	new->next = NULL;
-	return (new);
-}
-
 int	main(int argc, char **argv)
 {
+	t_lst	*head;
+	int		i;
+	t_lst	*new;
+	t_lst	*tmp;
+	t_stack	*st1;
+
 	if (argc < 2)
 	{
 		ft_putstr_fd("Your input should be\n./push_swap num1 num2 num3 ... numN.\n", 2);
 		exit(1);
 	}
-	t_lst *head;
-	int i;
-
 	head = NULL;
 	i = 0;
 	while (++i < argc)
 	{
-		t_lst *new = allocate_node(ft_myatoi(argv[i], head));
+		new = allocate_node(ft_myatoi(argv[i], head));
+		if (!new)
+			ft_error("Memory allocation failed\n", head);
 		if (!head)
 			head = new;
 		else
 		{
-			t_lst *tmp = head;
+			tmp = head;
 			while (tmp->next)
 				tmp = tmp->next;
 			tmp->next = new;
 		}
 	}
 	if (contain_duplicates(head))
-	{
-		free_list(head);
-		ft_putstr_fd("In your input contains duplicates", 2);
-		exit(EXIT_FAILURE);
-	}
+		ft_error("Error\n", head);
 
-	t_lst *tmp = head;
+	st1 = malloc(sizeof(t_stack));
+	if (!st1)
+		ft_error("Memory allocation failed\n", head);
+	st1->lst = head;
+
+	printf("%d\n", ft_list_size(st1));
+
+	if (st1->lst && st1->lst->next)
+		sa(st1);
+
+	tmp = st1->lst;
 	while (tmp)
 	{
 		printf("%d ", tmp->data);
 		tmp = tmp->next;
 	}
-	free_list(head);
+	printf("\n");
+
+	free_list(st1->lst);
+	free(st1);
 	exit(EXIT_SUCCESS);
 }

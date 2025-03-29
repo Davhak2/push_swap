@@ -8,6 +8,15 @@ void	ft_error(char *txt, t_lst *head)
 	exit(EXIT_FAILURE);
 }
 
+static int	atoi_helper(char *str)
+{
+	if (*str != '-' && *str != '+' && !ft_isdigit(*str))
+		return (0);
+	if (*str == 48 && *(str + 1))
+		return (0);
+	return (1);
+}
+
 int	ft_myatoi(char *str, t_lst *lst)
 {
 	int		flag;
@@ -15,7 +24,7 @@ int	ft_myatoi(char *str, t_lst *lst)
 
 	flag = 1;
 	res = 0;
-	if (*str != '-' && *str != '+' && !ft_isdigit(*str))
+	if (!atoi_helper(str))
 		ft_error("Error\n", lst);
 	if (*str == '-' || *str == '+')
 	{
