@@ -37,7 +37,7 @@ int	list_size(t_lst *head)
 	return (i);
 }
 
-int	is_empty(t_lst *stack)
+int	is_empty(t_stack *stack)
 {
 	if (!stack)
 		return (0);

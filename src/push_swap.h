@@ -14,7 +14,7 @@ typedef struct s_lst
 
 typedef struct s_stack
 {
-	t_lst	lst;
+	t_lst	*lst;
 }	t_stack;
 
 t_lst	*reverseList(t_lst *head);
@@ -24,8 +24,8 @@ int		ft_myatoi(char *str, t_lst *lst);
 int		contain_duplicates(t_lst *list);
 void	free_list(t_lst *head);
 int		list_size(t_lst *head);
-int		is_empty(t_lst *stack);
-void	sa(t_lst *stack);
+int		is_empty(t_stack *stack);
+void	sa(t_stack *stack);
 
 
 #endif
