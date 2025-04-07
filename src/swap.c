@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-t_lst *reverseList(t_lst *head)
+t_lst	*reverseList(t_lst *head)
 {
 	t_lst *a;
 	t_lst *b;
@@ -18,7 +18,7 @@ t_lst *reverseList(t_lst *head)
 	return (head);
 }
 
-void sa(t_stack *stack)
+void	sa(t_stack *stack, int flag)
 {
 	t_lst *a;
 	t_lst *b;
@@ -32,10 +32,11 @@ void sa(t_stack *stack)
 		b->next = a;
 		stack->lst = b;
 	}
-	ft_putstr_fd("sa\n", 1);
+	if (flag)
+		ft_putstr_fd("sa\n", 1);
 }
 
-void sb(t_stack *stack)
+void	sb(t_stack *stack, int flag)
 {
 	t_lst *a;
 	t_lst *b;
@@ -49,5 +50,13 @@ void sb(t_stack *stack)
 		b->next = a;
 		stack->lst = b;
 	}
-	ft_putstr_fd("sb\n", 1);
+	if (flag)
+		ft_putstr_fd("sb\n", 1);
+}
+
+void	ss(t_stack *st1, t_stack *st2)
+{
+	sa(st1, 0);
+	sb(st2, 0);
+	ft_putstr_fd("ss\n", 1);
 }

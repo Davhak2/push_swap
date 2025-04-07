@@ -25,7 +25,16 @@ int		contain_duplicates(t_lst *list);
 void	free_list(t_lst *head);
 int		list_size(t_lst *head);
 int		is_empty(t_stack *stack);
-void	sa(t_stack *stack);
+
+void	sa(t_stack *stack, int flag);
+void	sb(t_stack *stack, int flag);
+void	ss(t_stack *s1, t_stack *s2);
+
+void	ra(t_stack *stack, int flag);
+void	rb(t_stack *stack, int flag);
+void	rr(t_stack *s1, t_stack *s2);
+
+void print_stack(const char *name, t_lst *lst);
 
 
 #endif
