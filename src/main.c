@@ -5,7 +5,7 @@ void print_stack(const char *name, t_lst *lst)
 	printf("%s: ", name);
 	while (lst)
 	{
-		printf("%d ", lst->data);
+		printf("%d (%d) ", lst->data, lst->index);
 		lst = lst->next;
 	}
 	printf("\n");
@@ -23,15 +23,41 @@ t_lst *copy_list(t_lst *head)
 			free_list(copy);
 			return NULL;
 		}
+		new->index = head->index; // <- Copy the index here
+
 		if (!copy)
 			copy = new;
 		else
 			tmp->next = new;
+
 		tmp = new;
 		head = head->next;
 	}
 	return copy;
 }
+
+
+void assign_indexes(t_lst *head)
+{
+	t_lst *outer = head;
+	t_lst *inner;
+	int index;
+
+	while (outer)
+	{
+		index = 0;
+		inner = head;
+		while (inner)
+		{
+			if (inner->data < outer->data)
+				index++;
+			inner = inner->next;
+		}
+		outer->index = index;
+		outer = outer->next;
+	}
+}
+
 
 int main(int argc, char **argv)
 {
@@ -72,6 +98,8 @@ int main(int argc, char **argv)
 	if (contain_duplicates(head))
 		ft_error("Error\n", head);
 
+	assign_indexes(head); // <- Add index values to each node
+
 	a = malloc(sizeof(t_stack));
 	b = malloc(sizeof(t_stack));
 	if (!a || !b)
@@ -81,11 +109,28 @@ int main(int argc, char **argv)
 	if (!b->lst)
 		ft_error("Memory allocation failed while copying\n", head);
 
-	// --- Test ra ---
-	printf("\n--- Testing ra ---\n");
-	print_stack("A before ra", a->lst);
-	ra(a, 1);
-	print_stack("A after ra", a->lst);
+	// --- Test pb ---
+	printf("\n--- Testing pb ---\n");
+	print_stack("A before pb", a->lst);
+	print_stack("B before pb", b->lst);
+	pb(a, b, 1);
+	print_stack("A after pb", a->lst);
+	print_stack("B after pb", b->lst);
+
+	// --- Test pa ---
+	printf("\n--- Testing pa ---\n");
+	print_stack("A before pa", a->lst);
+	print_stack("B before pa", b->lst);
+	pa(a, b, 1);
+	print_stack("A after pa", a->lst);
+	print_stack("B after pa", b->lst);
+
+
+	// --- Test rra ---
+	printf("\n--- Testing rra ---\n");
+	print_stack("A before rra", a->lst);
+	rra(a, 1);
+	print_stack("A after rra", a->lst);
 
 	// --- Test rb ---
 	printf("\n--- Testing rb ---\n");
@@ -95,7 +140,6 @@ int main(int argc, char **argv)
 
 	// --- Test rr ---
 	printf("\n--- Testing rr ---\n");
-
 	print_stack("A before rr", a->lst);
 	print_stack("B before rr", b->lst);
 	rr(a, b);

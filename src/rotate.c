@@ -5,7 +5,7 @@ void	ra(t_stack *stack, int flag)
 	t_lst	*first;
 	t_lst	*last;
 
-	if (is_empty(stack) && !stack->lst->next)
+	if (!is_empty(stack) || list_size(stack->lst) < 2)
 		return ;
 	first = stack->lst;
 	stack->lst = stack->lst->next;
@@ -23,7 +23,7 @@ void	rb(t_stack *stack, int flag)
 	t_lst	*first;
 	t_lst	*last;
 
-	if (is_empty(stack) && list_size(stack->lst) < 2)
+	if (!is_empty(stack) || list_size(stack->lst) < 2)
 		return ;
 	first = stack->lst;
 	stack->lst = stack->lst->next;

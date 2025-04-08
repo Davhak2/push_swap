@@ -6,7 +6,7 @@ SRC_DIR     = src
 OBJ_DIR     = obj
 LIBFT_DIR   = libft
 
-SRC         = main.c validation.c utils.c swap.c rotate.c
+SRC         = main.c validation.c utils.c swap.c rotate.c reverse_rotate.c
 OBJ         = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 LIBFT       = $(LIBFT_DIR)/libft.a
 

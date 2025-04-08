@@ -60,3 +60,27 @@ void	ss(t_stack *st1, t_stack *st2)
 	sb(st2, 0);
 	ft_putstr_fd("ss\n", 1);
 }
+
+void pa(t_stack *a, t_stack *b, int flag)
+{
+	if (!b->lst)
+		return;
+	t_lst *tmp = b->lst;
+	b->lst = b->lst->next;
+	tmp->next = a->lst;
+	a->lst = tmp;
+	if (flag)
+		printf("pa\n");
+}
+
+void pb(t_stack *a, t_stack *b, int flag)
+{
+	if (!a->lst)
+		return;
+	t_lst *tmp = a->lst;
+	a->lst = a->lst->next;
+	tmp->next = b->lst;
+	b->lst = tmp;
+	if (flag)
+		printf("pb\n");
+}

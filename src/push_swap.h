@@ -9,6 +9,7 @@
 typedef struct s_lst
 {
 	int				data;
+	int				index;
 	struct s_lst	*next;
 }	t_lst;
 
@@ -33,6 +34,11 @@ void	ss(t_stack *s1, t_stack *s2);
 void	ra(t_stack *stack, int flag);
 void	rb(t_stack *stack, int flag);
 void	rr(t_stack *s1, t_stack *s2);
+void	rra(t_stack *stack, int flag);
+
+void pa(t_stack *a, t_stack *b, int flag);
+void pb(t_stack *a, t_stack *b, int flag);
+
 
 void print_stack(const char *name, t_lst *lst);
 
