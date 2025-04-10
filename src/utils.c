@@ -43,3 +43,25 @@ int	is_empty(t_stack *stack)
 		return (0);
 	return (1);
 }
+
+void	assign_indexes(t_lst *head)
+{
+	int		index;
+	t_lst	*current;
+	t_lst	*temp_head;
+
+	temp_head = head;
+	while (head)
+	{
+		current = temp_head;
+		index = 0;
+		while (current)
+		{
+			if (head->data > current->data)
+				index++;
+			current = current->next;
+		}
+		head->index = index;
+		head = head->next;
+	}
+}

@@ -1,33 +1,14 @@
 #include "push_swap.h"
 
-t_lst	*reverseList(t_lst *head)
-{
-	t_lst *a;
-	t_lst *b;
-
-	a = NULL;
-	b = NULL;
-	while (head)
-	{
-		a = head->next;
-		head->next = b;
-		b = head;
-		head = a;
-	}
-	head = b;
-	return (head);
-}
-
 void	sa(t_stack *stack, int flag)
 {
-	t_lst *a;
-	t_lst *b;
+	t_lst	*a;
+	t_lst	*b;
 
 	if (is_empty(stack) && list_size(stack->lst) >= 2)
 	{
 		a = stack->lst;
 		b = stack->lst->next;
-
 		a->next = b->next;
 		b->next = a;
 		stack->lst = b;
@@ -38,14 +19,13 @@ void	sa(t_stack *stack, int flag)
 
 void	sb(t_stack *stack, int flag)
 {
-	t_lst *a;
-	t_lst *b;
+	t_lst	*a;
+	t_lst	*b;
 
 	if (is_empty(stack) && list_size(stack->lst) >= 2)
 	{
 		a = stack->lst;
 		b = stack->lst->next;
-
 		a->next = b->next;
 		b->next = a;
 		stack->lst = b;
@@ -61,26 +41,30 @@ void	ss(t_stack *st1, t_stack *st2)
 	ft_putstr_fd("ss\n", 1);
 }
 
-void pa(t_stack *a, t_stack *b, int flag)
+void	pa(t_stack *a, t_stack *b, int flag)
 {
+	t_lst	*tmp;
+
 	if (!b->lst)
-		return;
-	t_lst *tmp = b->lst;
+		return ;
+	tmp = b->lst;
 	b->lst = b->lst->next;
 	tmp->next = a->lst;
 	a->lst = tmp;
 	if (flag)
-		printf("pa\n");
+		ft_putstr_fd("pa\n", 1);
 }
 
-void pb(t_stack *a, t_stack *b, int flag)
+void	pb(t_stack *a, t_stack *b, int flag)
 {
+	t_lst	*tmp;
+
 	if (!a->lst)
-		return;
-	t_lst *tmp = a->lst;
+		return ;
+	tmp = a->lst;
 	a->lst = a->lst->next;
 	tmp->next = b->lst;
 	b->lst = tmp;
 	if (flag)
-		printf("pb\n");
+		ft_putstr_fd("pb\n", 1);
 }

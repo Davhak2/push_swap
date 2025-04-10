@@ -28,7 +28,6 @@ void	rb(t_stack *stack, int flag)
 	first = stack->lst;
 	stack->lst = stack->lst->next;
 	first->next = NULL;
-
 	last = stack->lst;
 	while (last->next)
 		last = last->next;

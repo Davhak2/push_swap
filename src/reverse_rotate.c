@@ -44,7 +44,7 @@ void	rrb(t_stack *stack, int flag)
 		ft_putstr_fd("rrb\n", 1);
 }
 
-void rrr(t_stack *s1, t_stack *s2)
+void	rrr(t_stack *s1, t_stack *s2)
 {
 	rra(s1, 0);
 	rrb(s2, 0);
