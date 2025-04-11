@@ -2,7 +2,6 @@
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
-# include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
 # include <stdbool.h>
@@ -28,6 +27,7 @@ void	free_list(t_lst *head);
 int		list_size(t_lst *head);
 int		is_empty(t_stack *stack);
 void	assign_indexes(t_lst *head);
+int		max_index(t_stack *stack, int i);
 
 void	sa(t_stack *stack, int flag);
 void	sb(t_stack *stack, int flag);
@@ -45,15 +45,12 @@ void	pa(t_stack *a, t_stack *b, int flag);
 void	pb(t_stack *a, t_stack *b, int flag);
 
 int		max_index(t_stack *stack, int i);
-int		range(int i);
 void	butterfly(t_stack *a, t_stack *b);
-void	push_all(t_stack *a, t_stack *b, int total);
 
 void	sort_2pairs(t_stack *a);
 void	sort_3pairs(t_stack *a);
 void	sort_4pairs(t_stack *a, t_stack *b);
 void	sort_5pairs(t_stack *a, t_stack *b);
-
 
 void	free_2d(char **arr);
 void	is_sorted(t_lst *list);

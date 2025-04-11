@@ -1,5 +1,19 @@
 #include "push_swap.h"
 
+int	max_index(t_stack *stack, int i)
+{
+	t_lst	*tmp;
+
+	tmp = stack->lst;
+	while (tmp->index)
+	{
+		if (tmp->index == i - 1)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
 static void	sort_stack(t_stack *a, t_stack *b)
 {
 	int	size;
@@ -16,21 +30,6 @@ static void	sort_stack(t_stack *a, t_stack *b)
 	else
 		butterfly(a, b);
 }
-
-void	print_list(t_lst *lst)
-{
-	printf("List:\n");
-	while (lst)
-	{
-		printf("%d(%d)", lst->data, lst->index);
-		if (lst->next)
-			printf(" -> ");
-		lst = lst->next;
-	}
-	printf(" -> NULL\n");
-}
-
-#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
@@ -51,7 +50,6 @@ int	main(int argc, char **argv)
 		a->lst = head;
 		b->lst = NULL;
 		sort_stack(a, b);
-		//print_list(a->lst);
 		free_list(a->lst);
 		free(a);
 		free(b);

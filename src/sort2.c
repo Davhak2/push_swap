@@ -1,19 +1,5 @@
 #include "push_swap.h"
 
-int	max_index(t_stack *stack, int i)
-{
-	t_lst	*tmp;
-
-	tmp = stack->lst;
-	while (tmp->index)
-	{
-		if (tmp->index == i - 1)
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
-}
-
 void	sort_2pairs(t_stack *a)
 {
 	if (a->lst->index > a->lst->next->index)
@@ -55,7 +41,7 @@ void	sort_4pairs(t_stack *a, t_stack *b)
 	ra(a, 1);
 }
 
-static void	sorting_5_1(t_stack *a)
+static void	helper(t_stack *a)
 {
 	if (a->lst->index == 4 && a->lst->next->index == 2)
 		ra(a, 1);
@@ -95,7 +81,7 @@ void	sort_5pairs(t_stack *a, t_stack *b)
 		--i;
 		++j;
 	}
-	sorting_5_1(a);
+	helper(a);
 	if (b->lst->index < b->lst->next->index)
 		sb(b, 1);
 	pa(a, b, 1);
