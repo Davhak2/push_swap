@@ -6,13 +6,13 @@
 /*   By: davihako <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 14:42:14 by davihako          #+#    #+#             */
-/*   Updated: 2025/01/14 16:15:55 by davihako         ###   ########.fr       */
+/*   Updated: 2025/02/25 18:24:39 by davihako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	words_calc(const char *s, char c)
+static size_t	wordcount(const char *s, char c)
 {
 	size_t	count;
 	size_t	is_new;
@@ -73,26 +73,26 @@ static void	free_split(char ***s, size_t count)
 char	**ft_split(char const *s, char c)
 {
 	size_t	count;
-	char	**words_ptr;
-	size_t	index;
+	char	**words;
+	size_t	i;
 
 	if (!s)
 		return (NULL);
-	count = words_calc(s, c) + 1;
-	words_ptr = (char **)malloc(count * sizeof(void *));
-	if (!words_ptr)
+	count = wordcount(s, c) + 1;
+	words = (char **)malloc(count * sizeof(void *));
+	if (!words)
 		return (NULL);
-	index = 0;
-	while (index < count - 1)
+	i = 0;
+	while (i < count - 1)
 	{
-		words_ptr[index] = new_word(&s, c);
-		if (!words_ptr[index])
+		words[i] = new_word(&s, c);
+		if (!words[i])
 		{
-			free_split(&words_ptr, index);
+			free_split(&words, i);
 			return (NULL);
 		}
-		++index;
+		++i;
 	}
-	words_ptr[index] = NULL;
-	return (words_ptr);
+	words[i] = NULL;
+	return (words);
 }

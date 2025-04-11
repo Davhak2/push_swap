@@ -1,11 +1,11 @@
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef CHECKER_H
+# define CHECKER_H
 
 # include "../libft/libft.h"
-# include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
 # include <stdbool.h>
+#include <stdio.h>
 
 typedef struct s_lst
 {
@@ -44,19 +44,10 @@ void	rrr(t_stack *s1, t_stack *s2);
 void	pa(t_stack *a, t_stack *b, int flag);
 void	pb(t_stack *a, t_stack *b, int flag);
 
-int		max_index(t_stack *stack, int i);
-int		range(int i);
-void	butterfly(t_stack *a, t_stack *b);
-void	push_all(t_stack *a, t_stack *b, int total);
-
-void	sort_2pairs(t_stack *a);
-void	sort_3pairs(t_stack *a);
-void	sort_4pairs(t_stack *a, t_stack *b);
-void	sort_5pairs(t_stack *a, t_stack *b);
-
-
 void	free_2d(char **arr);
 void	is_sorted(t_lst *list);
 int		check_only_space(char *str);
+
+void	infloop(t_stack *a, t_stack *b);
 
 #endif
